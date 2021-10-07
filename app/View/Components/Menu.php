@@ -27,8 +27,7 @@ class Menu extends Component
     public function render()
     {
 
-        return view('components.menu', [
-                                   'active' => $this->active] );
+        return view('components.menu', ['active' => $this->active] );
     }
 
     public function list() {
