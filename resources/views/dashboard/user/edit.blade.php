@@ -10,7 +10,9 @@
                 <h3>Users</h3>
             </div>
             <div class="col-4 text-right">
-                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">
+                <i class="fas fa-trash"></i>    
+                Delete</button>
             </div>
         </div>
     </div>
@@ -65,7 +67,9 @@
                 @csrf
                 @method('delete')
                 <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                <button class="btn btn-sm btn-danger" type="submit">
+                <i class="fas fa-trash"></i>    
+                Delete</button>
                 </form>
             </div>
         </div>
