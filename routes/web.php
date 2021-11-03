@@ -25,4 +25,5 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index');
 
 Route::get('/dashboard/users', 'Dashboard\UserController@index');
 Route::get('/dashboard/user/edit/{id}', 'Dashboard\UserController@edit');
-Route::post('/dashboard/user/edit/{id}', 'Dashboard\UserController@update');
+Route::post('/dashboard/user/update/{id}', 'Dashboard\UserController@update');
+Route::delete('/dashboard/user/delete/{id}', 'Dashboard\UserController@destroy');

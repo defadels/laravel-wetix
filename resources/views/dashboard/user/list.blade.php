@@ -30,7 +30,7 @@
                     <th>Email</th>
                     <th>Regitered</th>
                     <th>Edited</th>
-                    <th>&nbsp;/th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
         <tbody>
