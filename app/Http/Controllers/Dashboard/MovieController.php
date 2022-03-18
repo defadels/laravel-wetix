@@ -51,7 +51,7 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Movie $movie)
+    public function store(Request $request)
     {
 
        $validate  = Validator::make($request->all(),[

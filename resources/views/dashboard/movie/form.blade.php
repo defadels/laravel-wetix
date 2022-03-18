@@ -44,7 +44,7 @@
                 <div class="custom-file">
                     
                     <input type="file" class="custom-file-input" name="thumbnail">
-                    <label for="thumbnail" name="thumbnail" class="custom-file-label">Thumbnail</label>
+                    <label for="thumbnail" class="custom-file-label">Thumbnail</label>
                     @error('thumbnail')
                         <span class="text-danger">
                             {{ $message }}
