@@ -32,7 +32,7 @@ class UserController extends Controller
 
 
        
-        return view('dashboard/user/list', ['users' => $users, 'active' => $active]);
+        return view('dashboard/user/list', ['users' => $users,'request' => $request, 'active' => $active]);
     }
 
     /**
