@@ -17,9 +17,9 @@ class UserController extends Controller
 
 
 
-    public function index(Request $req, User $users)
+    public function index(Request $request, User $users)
     {   
-        $q = $req->input('q');
+        $q = $request->input('q');
 
 
         $active = "User";
