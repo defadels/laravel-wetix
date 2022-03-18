@@ -19,11 +19,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-        <form method="post" action="{{ route('dashboard.movies.store') }}" >
+        <form method="post" action="{{ route('dashboard.movies.store') }}" encytype="multipart/form-data">
         @csrf
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="name" value="">
+                <input type="text" class="form-control" name="title" value="">
                 @error('title')
                 <span class="text-danger">
                     {{ $message }}
@@ -44,7 +44,7 @@
                 <div class="custom-file">
                     
                     <input type="file" class="custom-file-input" name="thumbnail">
-                    <label for="thumbnail" class="custom-file-label">Thumbnail</label>
+                    <label for="thumbnail" name="thumbnail" class="custom-file-label">Thumbnail</label>
                     @error('thumbnail')
                         <span class="text-danger">
                             {{ $message }}
