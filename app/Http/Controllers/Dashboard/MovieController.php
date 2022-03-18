@@ -13,9 +13,9 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req, Movie $movies)
+    public function index(Request $request, Movie $movies)
     {
-        $q = $req->input('q');
+        $q = $request->input('q');
 
 
         $active = "Movies";
@@ -28,7 +28,7 @@ class MovieController extends Controller
 
 
        
-        return view('dashboard/movie/list', ['movies' => $movies, 'request' => $request,'active' => $active]);
+        return view('dashboard/movie/list', ['movies' => $movies, 'request' => $request, 'active' => $active]);
     }
 
     /**
