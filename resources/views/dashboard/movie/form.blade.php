@@ -22,27 +22,41 @@
         <form method="post" action="{{ route('dashboard.movies.store') }}" >
         @csrf
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="title">Title</label>
                 <input type="text" class="form-control" name="name" value="">
-                @error('nama')
+                @error('title')
                 <span class="text-danger">
                     {{ $message }}
                 </span>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" value="">
-                @error('email')
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description"></textarea>
+                @error('description')
                     <span class="text-danger">
                         {{ $message }}
                     </span>
 
                 @enderror
             </div>
+            <div class="form-group mt-4">
+                <div class="custom-file">
+                    
+                    <input type="file" class="custom-file-input" name="thumbnail">
+                    <label for="thumbnail" class="custom-file-label">Thumbnail</label>
+                    @error('thumbnail')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+
+                    @enderror
+                </div>
+                
+            </div>
             <div class="form-group mb-0">
                 <button type="button" onclick="window.history.back()" class="btn btn-sm btn-secondary">Back</button>
-                <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                <button type="submit" class="btn btn-primary btn-sm">Create</button>
             </div>
         </form>
         </div>
