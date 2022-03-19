@@ -51,13 +51,13 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Movie $movie)
     {
 
        $validate  = Validator::make($request->all(),[
             'title'       => 'required|unique:App\Models\Movie,title',
             'description' => 'required',
-            'thumbnail'   => 'required|image'
+            'thumbnail'   => 'required|image',
        ]);
 
        if($validate->fails()){
