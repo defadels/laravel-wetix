@@ -37,7 +37,7 @@ class Menu extends Component
                 'route' => 'dashboard',
                 'icon' => 'fas fa-tachometer-alt'
             ],
-            [
+            [ 
                 'label' => 'Movies',
                 'route' => 'dashboard.movies',
                 'icon' => 'fas fa-video'

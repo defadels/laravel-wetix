@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Users
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function (){ 
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
 
     Route::get('/dashboard/theater', 'Dashboard\TheaterController@index')->name('dashboard.theater');

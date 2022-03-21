@@ -74,7 +74,7 @@ class MovieController extends Controller
            $movie->description = $request->input('description');
            $movie->thumbnail = $filename;
 
-           $movie->save();
+           $movie->save(); 
 
            return redirect()
                     ->view('dashboard.movies');

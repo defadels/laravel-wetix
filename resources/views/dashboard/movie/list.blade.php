@@ -37,14 +37,14 @@
                 </tr>
             </thead>
         <tbody>
-            @foreach($movies as $movie)
+            @foreach($movies as $movie) 
                 <tr>
                     <th scope="row">{{ ($movies->currentPage() - 1) * $movies->perPage() + $loop->iteration }}</th>
                     <td>{{$movie->title}}</td>
-                    <td>{{$movie->thumbnail}}</td>
+                    <td><img src="{{Storage::url($movie->thumbnail)}}" alt="" srcset=""></td>
                     <td><a href="{{route('dashboard.movies.edit',$movie->id)}}" title="Edit data" class="btn btn-success btn-sm">
                     <i class="fas fa-pen"></i></a></td>
-                </tr>
+                </tr> 
             @endforeach
         </tbody>
         
