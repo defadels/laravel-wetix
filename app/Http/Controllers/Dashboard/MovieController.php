@@ -70,7 +70,7 @@ class MovieController extends Controller
            $filename = time() . '.' . $image->getClientOriginalExtension();
            Storage::disk('local')->putFileAs('public/movies', $image, $filename);
 
-           $movie->title = $request->input('title');
+           $movie->title = $request->input('title'); 
            $movie->description = $request->input('description');
            $movie->thumbnail = $filename;
 

@@ -36,7 +36,7 @@
                 @error('description')
                     <span class="text-danger">
                         {{ $message }}
-                    </span> 
+                    </span>  
 
                 @enderror
             </div>

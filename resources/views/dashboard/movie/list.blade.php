@@ -35,7 +35,7 @@
                     <th>Thumbnail</th>
                     <th>&nbsp;</th>
                 </tr>
-            </thead>
+            </thead> 
         <tbody>
             @foreach($movies as $movie) 
                 <tr>
