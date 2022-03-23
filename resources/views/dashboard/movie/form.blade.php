@@ -24,7 +24,7 @@
         @method('put')
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" value="{{$movie->title}}">
+                <input type="text" class="form-control" name="title" value="{{ old('title') ?? $movie->title}}">
                 @error('title')
                 <span class="text-danger">
                     {{ $message }}
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description">{{$movie->description}}</textarea>
+                <textarea class="form-control" name="description">{{ old('description') ?? $movie->description}}</textarea>
                 @error('description')
                     <span class="text-danger">
                         {{ $message }}
@@ -44,7 +44,7 @@
             <div class="form-group mt-4">
                 <div class="custom-file">
                     
-                    <input type="file" class="custom-file-input" name="thumbnail">
+                    <input type="file" class="custom-file-input" name="thumbnail" value="{{old('thumbnail')}}">
                     <label for="thumbnail" class="custom-file-label">Thumbnail</label>
                     @error('thumbnail')
                         <span class="text-danger">
