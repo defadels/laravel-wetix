@@ -34,17 +34,17 @@
                     <th>Title</th>
                     <th>Thumbnail</th>
                     <th>&nbsp;</th>
-                </tr>
+                </tr> 
             </thead> 
         <tbody>
             @foreach($movies as $movie) 
                 <tr>
                     <th scope="row">{{ ($movies->currentPage() - 1) * $movies->perPage() + $loop->iteration }}</th>
                     <td>{{$movie->title}}</td>
-                    <td><img src="{{Storage::url($movie->thumbnail)}}" alt="" srcset=""></td>
+                    <td><img src="{{ asset('storage/movies/'.$movie->thumbnail) }}" alt="{{$movie->description}}" srcset=""></td>
                     <td><a href="{{route('dashboard.movies.edit',$movie->id)}}" title="Edit data" class="btn btn-success btn-sm">
                     <i class="fas fa-pen"></i></a></td>
-                </tr> 
+                </tr>  
             @endforeach
         </tbody>
         
