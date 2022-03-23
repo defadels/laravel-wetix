@@ -23,7 +23,7 @@
         @csrf
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                <input type="text" class="form-control @error('name') {{'is-invalid'}} @enderror" name="name" value="{{ $user->name }}">
                 @error('nama')
                 <span class="text-danger">
                     {{ $message }}
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" value="{{ old('email') ?? $user->email }}">
+                <input type="email" class="form-control @error('email') {{'is-invalid'}} @enderror" name="email" value="{{ old('email') ?? $user->email }}">
                 @error('email')
                     <span class="text-danger">
                         {{ $message }}
