@@ -19,11 +19,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-        <form method="post" action="{{ route('dashboard.movies.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route($url, $movie->id) }}" enctype="multipart/form-data">
         @csrf
+        @method('put')
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" value="">
+                <input type="text" class="form-control" name="title" value="{{$movie->title}}">
                 @error('title')
                 <span class="text-danger">
                     {{ $message }}
@@ -32,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description"></textarea>
+                <textarea class="form-control" name="description">{{$movie->description}}</textarea>
                 @error('description')
                     <span class="text-danger">
                         {{ $message }}
@@ -56,7 +57,7 @@
             </div>
             <div class="form-group mb-0">
                 <button type="button" onclick="window.history.back()" class="btn btn-sm btn-secondary">Back</button>
-                <button type="submit" class="btn btn-primary btn-sm">Create</button>
+                <button type="submit" class="btn btn-primary btn-sm">{{$button}}</button>
             </div>
         </form>
         </div>

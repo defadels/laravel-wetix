@@ -38,11 +38,16 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Movie $movie)
     {
         $active = "Movies";
 
-        return view('dashboard/movie/form', ['active' => $active]);
+        return view('dashboard/movie/form', [
+            'active' => $active,
+            'movie' => $movie,
+            'button' => 'Create',
+            'url' => 'dashboard.movies.store'
+        ]);
     }
 
     /**
@@ -102,9 +107,12 @@ class MovieController extends Controller
     {
         $active = "Movies";
 
-        dd($movie);
-
-        return view('dashboard/movie/form', ['active' => $active, 'movie' => $movie]);
+        return view('dashboard/movie/form', [
+            'active' => $active, 
+             'movie' => $movie,
+            'button' => 'Update',
+            'url' => 'dashboard.movies.update'
+        ]);
     }
 
     /**
@@ -114,9 +122,33 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+        $validate  = Validator::make($request->all(),[
+            'title'       => 'required|unique:App\Models\Movie,title,'.$movie->id,
+            'description' => 'required',
+            'thumbnail'   => 'image',
+       ]);
+
+       if($validate->fails()){
+           return redirect()
+                    ->route('dashboard.movies.update', $movie->id)
+                    ->withErrors($validate)
+                    ->withInput();
+       }else {
+        //    $image = $request->file('thumbnail');
+        //    $filename = time() . '.' . $image->getClientOriginalExtension();
+        //    Storage::disk('local')->putFileAs('public/movies', $image, $filename);
+
+           $movie->title = $request->input('title'); 
+           $movie->description = $request->input('description');
+        //    $movie->thumbnail = $filename;
+
+           $movie->save(); 
+
+           return redirect()
+                    ->route('dashboard.movies');
+       }
     }
 
     /**

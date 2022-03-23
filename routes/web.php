@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/dashboard/movies/create', 'Dashboard\MovieController@create')->name('dashboard.movies.create');
     Route::post('/dashboard/movies', 'Dashboard\MovieController@store')->name('dashboard.movies.store');
     Route::get('/dashboard/movies/{movie}', 'Dashboard\MovieController@edit')->name('dashboard.movies.edit');
-    Route::put('/dashboard/movies/{id}', 'Dashboard\MovieController@update')->name('dashboard.movies.update');
+    Route::put('/dashboard/movies/{movie}', 'Dashboard\MovieController@update')->name('dashboard.movies.update');
     Route::delete('/dashboard/movies', 'Dashboard\MovieController@destroy')->name('dashboard.movies.delete');
     
     Route::get('/dashboard/users', 'Dashboard\UserController@index')->name('dashboard.users');
