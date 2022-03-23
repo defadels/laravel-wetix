@@ -98,9 +98,13 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
-        //
+        $active = "Movies";
+
+        dd($movie);
+
+        return view('dashboard/movie/form', ['active' => $active, 'movie' => $movie]);
     }
 
     /**

@@ -63,3 +63,7 @@ table.table tr td {
   margin-right: 0.5em;
 }
 
+.col-thumbnail {
+  max-width: 70px;
+}
+
