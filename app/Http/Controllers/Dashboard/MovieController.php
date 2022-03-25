@@ -133,7 +133,7 @@ class MovieController extends Controller
        if($validate->fails()){
            return redirect()
                     ->route('dashboard.movies.update', $movie->id)
-                    ->withErrors($validate)
+                    ->withErrors($validate) 
                     ->withInput();
        }else {
            if($request->hasFile('thumbnail')){

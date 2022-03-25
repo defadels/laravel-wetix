@@ -26,7 +26,7 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control @error('title') {{'is-invalid'}} @enderror" name="title" value="{{ old('title') ?? $movie->title}}">
                 @error('title')
-                <span class="text-danger">
+                <span class="text-danger"> 
                     {{ $message }}
                 </span>
                 @enderror

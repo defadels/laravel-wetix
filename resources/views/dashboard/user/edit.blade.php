@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="row">
+        <div class="row"> 
             <div class="col-md-8 offset-md-2">
         <form method="post" action="{{ route('dashboard.users.update',$user->id) }}" >
         @csrf
