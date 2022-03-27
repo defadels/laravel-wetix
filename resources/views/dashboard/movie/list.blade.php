@@ -5,6 +5,14 @@
 <div class="mb-2">
     <a href="{{route('dashboard.movies.create')}}" class="btn btn-primary btn-sm">+ Movie</a>
 </div>
+
+<div class="alert alert-success">
+    <strong>Penambahan data movie berhasil</strong>
+    <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+    </button>
+</div>
+
 <div class="card">
     <div class="card-header">
         <div class="row">
