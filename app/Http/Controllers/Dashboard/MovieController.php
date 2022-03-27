@@ -44,7 +44,6 @@ class MovieController extends Controller
 
         return view('dashboard/movie/form', [
             'active' => $active,
-            'movie' => $movie,
             'button' => 'Create',
             'url' => 'dashboard.movies.store'
         ]);
@@ -82,7 +81,7 @@ class MovieController extends Controller
            $movie->save(); 
 
            return redirect()
-                    ->view('dashboard.movies');
+                    ->view('dashboard.movie');
        }
     }
 
