@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control @error('name') {{'is-invalid'}} @enderror" name="name" value="{{ $user->name }}">
-                @error('nama')
+                @error('name')
                 <span class="text-danger">
                     {{ $message }}
                 </span>

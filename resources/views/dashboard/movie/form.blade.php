@@ -75,11 +75,11 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Are you sure to delete user named 
+                    Are you sure to delete movie data 
                 </p>  
             </div>
             <div class="modal-footer">
-                <form action="{{ route('dashboard.movies.delete') }}" method="post">
+                <form action="{{ route('dashboard.movies.delete', $movie->id) }}" method="post">
                 @csrf
                 @method('delete')
                 <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
