@@ -6,10 +6,9 @@
     <a href="{{route('dashboard.movies.create')}}" class="btn btn-primary btn-sm">+ Movie</a>
 </div>
 
-
-@if(session()->has('message'))
+@if(session()->has('messages'))
 <div class="alert alert-success">
-    <strong>{{session()->get('message')}}</strong>
+    <strong>{{session()->get('messages')}}</strong>
     <button type="button" class="close" data-dismiss="alert">
         <span>&times;</span>
     </button>
