@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\Theater;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class TheaterController extends Controller
 {
@@ -13,9 +15,22 @@ class TheaterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Theater $theaters)
     {
-        //
+        $q = $request->input('q');
+
+
+        $active = "Theaters";
+
+        $theaters = $theaters->when($q, function($query) use ($q) {
+                return $query->where('title','like', '%'.$q.'%')
+                             ->orWhere('description','like', '%'.$q.'%');
+                })
+                ->paginate(10);
+
+
+       
+        return view('dashboard/theater/list', ['theaters' => $theaters, 'request' => $request, 'active' => $active]);
     }
 
     /**
