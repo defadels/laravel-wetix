@@ -63,7 +63,7 @@
     </table>
     {{$theaters->links()}}
     @else
-        <h4 class="text-center p-3">Belum ada data theater</h4>
+        <h4 class="text-center p-3">{{ __('pesan.no_data', ['module' => 'Theater']) }}</h4>
     @endif    
     </div>
 </div>

@@ -63,7 +63,7 @@
     </table>
     {{$movies->links()}}
     @else
-        <h4 class="text-center p-3">Belum ada data movie</h4>
+        <h4 class="text-center p-3">{{ __('pesan.no_data', ['module' => 'Movie']) }}</h4>
     @endif    
     </div>
 </div>
