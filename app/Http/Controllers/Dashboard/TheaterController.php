@@ -55,9 +55,25 @@ class TheaterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Theater $theater)
     {
-        //
+        $validate = Validator::make($request->all(),[
+            'theater' => 'required|max:250',
+            'address' => 'required|max:300',
+            'status' => 'required'
+        ]);
+
+        if($validate->fails()){
+            return redirect()->route('dashboard.theaters.create')->withErrors($validate)->withInput();
+        } else {
+            $theater->theater = $request->input('theater');
+            $theater->address = $request->input('address');
+            $theater->status = $request->input('status');
+
+            $theater->save();
+
+            return redirect()->route('dashboard.theaters')->with('messages', __('pesan.create', ['module' => $request->input('theater')]));
+        }
     }
 
     /**
@@ -79,7 +95,14 @@ class TheaterController extends Controller
      */
     public function edit(Theater $theater)
     {
-        //
+        $active = "Theaters";
+
+        return view('dashboard/theater/form', [
+            'active' => $active,
+            'button' => 'Simpan',
+            'theater' => $theater,
+            'url' => 'dashboard.theaters.update'
+        ]);
     }
 
     /**
