@@ -50,10 +50,10 @@
                 <tr>
                     {{-- <th scope="row">{{ ($theaters->currentPage() - 1) * $theaters->perPage() + $loop->iteration }}</th> --}}
                     <td class="col-thumbnail">
-                        <h4><strong>{{$theater->theater}}</strong></h4>
+                        <strong>{{$theater->theater}}</strong>
                     </td>
                     <td>
-                       <h4><strong>{{$theater->address}}</strong></h4> </td>
+                       <strong>{{$theater->address}}</strong> </td>
                     <td><a href="{{route('dashboard.theaters.edit',$theater->id)}}" title="Edit data" class="btn btn-success btn-sm">
                     <i class="fas fa-pen"></i></a></td> 
                 </tr>  

@@ -50,11 +50,11 @@
                     <label for="status">Status</label>
                 </div>    
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="active" name="status" class="form-check-input" id="active">
+                    <input type="radio" value="active" name="status" class="form-check-input" id="active" @if((old('status') ?? $theater->status ?? '') == 'active') checked @endif>
                     <label for="active" class="form-check-label">Active</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="inactive" name="status" class="form-check-input" id="inactive">
+                    <input type="radio" value="inactive" name="status" class="form-check-input" id="inactive" @if((old('status') ?? $theater->status ?? '') == 'inactive') checked @endif>
                     <label for="inactive" class="form-check-label">Inactive</label>
                 </div>
                 <div>
