@@ -131,7 +131,7 @@ class TheaterController extends Controller
 
             return redirect()->route('dashboard.theaters')->with('messages', __('pesan.create', ['module' => $request->input('theater')]));
     }
-}
+}   
 
     /**
      * Remove the specified resource from storage.
@@ -141,6 +141,10 @@ class TheaterController extends Controller
      */
     public function destroy(Theater $theater)
     {
-        //
+        
+        $theater->delete();
+
+        return redirect()->route('dashboard.theaters')
+        ->with('messages',__('pesan.delete', ['module' => 'theater']));
     }
 }
