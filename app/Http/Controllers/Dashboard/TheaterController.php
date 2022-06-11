@@ -114,8 +114,24 @@ class TheaterController extends Controller
      */
     public function update(Request $request, Theater $theater)
     {
-        //
+        $validate = Validator::make($request->all(),[
+            'theater' => 'required|max:250',
+            'address' => 'required|max:300',
+            'status' => 'required'
+        ]);
+
+        if($validate->fails()){
+            return redirect()->route('dashboard.theaters.create')->withErrors($validate)->withInput();
+        } else {
+            $theater->theater = $request->input('theater');
+            $theater->address = $request->input('address');
+            $theater->status = $request->input('status');
+
+            $theater->save();
+
+            return redirect()->route('dashboard.theaters')->with('messages', __('pesan.create', ['module' => $request->input('theater')]));
     }
+}
 
     /**
      * Remove the specified resource from storage.
