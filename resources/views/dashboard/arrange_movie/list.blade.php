@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="mb-2">
-    <a href="{{route('dashboard.theaters.create')}}" class="btn btn-primary btn-sm">+ Theater</a>
+    <a href="{{route('dashboard.theaters.arrange.movie.create',$theater->id)}}" class="btn btn-primary btn-sm">+ Arrange Movie</a>
 </div>
 
 @if(session()->has('messages'))
@@ -20,7 +20,7 @@
         <div class="row">
 
             <div class="col-8 align-self-center">
-                <h3>Theaters</h3>
+                <h3>Arrange Movie</h3>
             </div>
             <div class="col-4">
                 <form method="get" action="{{ route('dashboard.theaters') }}">
@@ -36,7 +36,7 @@
     </div>
     <div class="card-body p-0">
 
-        @if($theaters->total())
+        @if($arranges->total())
         <table class="table table-borderless table-striped table-hover">
             <thead>
                 <tr>
@@ -46,17 +46,17 @@
                 </tr> 
             </thead> 
         <tbody>
-            @foreach($theaters as $theater) 
+            @foreach($arranges as $arrange) 
                 <tr>
                     {{-- <th scope="row">{{ ($theaters->currentPage() - 1) * $theaters->perPage() + $loop->iteration }}</th> --}}
                     <td class="col-thumbnail">
-                        <strong>{{$theater->theater}}</strong>
+                        <strong>{{$arrange->price}}</strong>
                     </td>
                     <td>
-                       <strong>{{$theater->address}}</strong> </td>
+                       <strong>{{$arrange->seats}}</strong> </td>
                     <td>
-                    <a href="{{route('dashboard.theaters.edit',$theater->id)}}" title="Edit data" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
-                    <a href="{{route('dashboard.theaters.arrange.movie',$theater->id)}}" title="Arrange movie" class="btn btn-primary btn-sm"><i class="fas fa-film"></i></a>
+                    <a href="{{route('dashboard.theaters.edit',$arrange->id)}}" title="Edit data" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
+                    <a href="{{route('dashboard.theaters.arrange.movie',$arrange->id)}}" title="Arrange movie" class="btn btn-primary btn-sm"><i class="fas fa-film"></i></a>
                         
                 </td> 
                 </tr>  
@@ -64,7 +64,7 @@
         </tbody>
         
     </table>
-    {{$theaters->links()}}
+    {{$arranges->links()}}
     @else
         <h4 class="text-center p-3">{{ __('pesan.no_data', ['module' => 'Theater']) }}</h4>
     @endif    
