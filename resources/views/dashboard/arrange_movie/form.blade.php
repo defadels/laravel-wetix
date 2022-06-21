@@ -89,6 +89,17 @@
                
             </div>
 
+
+        <div class="form-group mb-0">
+
+            <label for="schedule">Schedule</label>  
+        </div>
+          <div class="card">
+            <div class="card-body">
+                <schedule-component></schedule-component>
+            </div>    
+        </div>  
+
             <div class="form-group">
                 <label for="address">Address</label>
                 <textarea class="form-control @error('address') {{'is-invalid'}} @enderror" name="address">{{ old('address') ?? $theater->address ?? ''}}</textarea>
