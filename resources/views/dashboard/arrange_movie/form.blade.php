@@ -7,9 +7,9 @@
         <div class="row">
 
             <div class="col-8 align-self-center">
-                <h3>Theaters</h3>
+                <h3>Arrange Movie</h3>
             </div>
-            @if(isset($theater))
+            @if(isset($arrangeMovie))
             <div class="col-4 text-right">
                 <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">
                 <i class="fas fa-trash"></i>    
@@ -21,20 +21,24 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-        <form method="post" action="{{ route($url, $theater->id ?? '') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route($url, $arrangeMovie->id ?? '') }}" enctype="multipart/form-data">
         @csrf
-        @if(isset($theater))
+        @if(isset($arrangeMovie))
             @method('put')
         @endif
         <input type="hidden" name="theater_id" id="" value="{{ $theater->id }}" class="form-control">
 
         <div class="form-group">
             <label for="movie_id">Movie</label>
-            <select name="movie_id" id="" class="form-control">
+            <select name="movie_id" id="" class="form-control @error('movie_id') {{'is-invalid'}} @enderror">
               @if(count($movies) > 0)  
                 <option value="">Select Movie</option>
                 @foreach($movies as $movie)
-                <option value="{{$movie->id}}">{{$movie->title}}</option>
+                    @if($movie->id == old('movie'))
+                        <option value="{{$movie->id}}" selected>{{$movie->title}}</option>
+                    @else    
+                        <option value="{{$movie->id}}">{{$movie->title}}</option>
+                    @endif    
                 @endforeach
 
                 @else
@@ -42,11 +46,16 @@
                 
               @endif  
             </select>
+            @error('movie_id')
+            <span class="text-danger"> 
+                {{ $message }}
+            </span>
+            @enderror
         </div>
 
             <div class="form-group">
-                <label for="theater">Studio</label>
-                <input type="text" class="form-control @error('studio') {{'is-invalid'}} @enderror" name="studio" value="{{ old('studio') ?? $theater->theater ?? ''}}">
+                <label for="studio">Studio</label>
+                <input type="text" class="form-control @error('studio') {{'is-invalid'}} @enderror" name="studio" value="{{ old('studio') ?? $arrangeMovie->studio ?? ''}}">
                 @error('studio')
                 <span class="text-danger"> 
                     {{ $message }}
@@ -55,8 +64,8 @@
             </div>
 
             <div class="form-group">
-                <label for="theater">Price</label>
-                <input type="number" class="form-control @error('price') {{'is-invalid'}} @enderror" name="price" value="{{ old('price') ?? $theater->theater ?? ''}}">
+                <label for="price">Price</label>
+                <input type="number" class="form-control @error('price') {{'is-invalid'}} @enderror" name="price" value="{{ old('price') ?? $arrangeMovie->price ?? ''}}">
                 @error('price')
                 <span class="text-danger"> 
                     {{ $message }}
@@ -66,10 +75,10 @@
             
             <div class="form-group form-row mt-4">
                     <div class="col-2 align-self-center">
-                        <label for="theater">Seats</label>
+                        <label for="seats">Seats</label>
                     </div>
                     <div class="col-5">
-                        <input type="number" placeholder="Rows" class="form-control @error('rows') {{'is-invalid'}} @enderror" name="rows" value="{{ old('rows') ?? $theater->theater ?? ''}}">
+                        <input type="number" placeholder="Rows" class="form-control @error('rows') {{'is-invalid'}} @enderror" name="rows" value="{{ old('rows') ?? $arrangeMovie->rows ?? ''}}">
                         
                         @error('rows')
                         <span class="text-danger"> 
@@ -78,7 +87,7 @@
                         @enderror
                     </div>
                     <div class="col-5">
-                        <input type="number" placeholder="Cloumns" class="form-control @error('columns') {{'is-invalid'}} @enderror" name="columns" value="{{ old('columns') ?? $theater->theater ?? ''}}">
+                        <input type="number" placeholder="Cloumns" class="form-control @error('columns') {{'is-invalid'}} @enderror" name="columns" value="{{ old('columns') ?? $arrangeMovie->columns ?? ''}}">
                         
                         @error('columns')
                         <span class="text-danger"> 
@@ -89,41 +98,33 @@
                
             </div>
 
-
-        <div class="form-group mb-0">
-
-            <label for="schedule">Schedule</label>  
-        </div>
-          <div class="card">
-            <div class="card-body">
-                <schedule-component></schedule-component>
-            </div>    
-        </div>  
-
             <div class="form-group">
-                <label for="address">Address</label>
-                <textarea class="form-control @error('address') {{'is-invalid'}} @enderror" name="address">{{ old('address') ?? $theater->address ?? ''}}</textarea>
-                @error('address')
-                    <span class="text-danger">
-                        {{ $message }}
-                    </span>  
-
-                @enderror
+                    <label for="schedule">Schedule</label>  
             </div>
+            <div class="card">
+                <div class="card-body"> 
+                    <schedule-component :old-schedules="{{ json_encode(old('schedules') ?? []) }}"></schedule-component>
+                </div>
+                @error('schedule')
+                    <span class="text-danger"> 
+                        {{ $message }}
+                    </span>
+                @enderror   
+                </div>  
 
                 <div class="form-group mb-2">
                     <label for="status">Status</label>
                 </div>    
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="coming soon" name="status" class="form-check-input" id="coming soon" @if((old('status') ?? $theater->status ?? '') == 'coming soon') checked @endif>
+                    <input type="radio" value="coming soon" name="status" class="form-check-input" id="coming soon" @if((old('status') ?? $arrangeMovie->status ?? '') == 'coming soon') checked @endif>
                     <label for="coming soon" class="form-check-label">Coming Soon</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="in theater" name="status" class="form-check-input" id="in theater" @if((old('status') ?? $theater->status ?? '') == 'in theater') checked @endif>
+                    <input type="radio" value="in theater" name="status" class="form-check-input" id="in theater" @if((old('status') ?? $arrangeMovie->status ?? '') == 'in theater') checked @endif>
                     <label for="in theater" class="form-check-label">In Theater</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="finish" name="status" class="form-check-input" id="finish" @if((old('status') ?? $theater->status ?? '') == 'finish') checked @endif>
+                    <input type="radio" value="finish" name="status" class="form-check-input" id="finish" @if((old('status') ?? $arrangeMovie->status ?? '') == 'finish') checked @endif>
                     <label for="finish" class="form-check-label">Finish</label>
                 </div>
                 <div>
@@ -135,11 +136,7 @@
                     </span>
                     @enderror
             </div>
-            
-               
-            
-                
-           
+
             <div class="form-group mt-2">
                 <button type="button" onclick="window.history.back()" class="btn btn-sm btn-secondary">Back</button>
                 <button type="submit" class="btn btn-primary btn-sm">{{$button}}</button>

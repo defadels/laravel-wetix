@@ -1931,13 +1931,18 @@ __webpack_require__.r(__webpack_exports__);
       schedules: []
     };
   },
+  props: ['oldSchedules'],
+  created: function created() {
+    this.schedules = this.oldSchedules;
+    console.log(this.schedules);
+  },
   methods: {
     addSchedule: function addSchedule() {
       this.schedules.push({
         hour: ''
       });
     },
-    removeSchedule: function removeSchedule() {
+    removeSchedule: function removeSchedule(index) {
       this.schedules.splice(index, 1);
     }
   }
@@ -37611,7 +37616,33 @@ var render = function() {
     [
       _vm._l(_vm.schedules, function(schedule, index) {
         return _c("div", { staticClass: "form-group form-row" }, [
-          _vm._m(0, true),
+          _c("div", { staticClass: "col-11" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: schedule.hour,
+                  expression: "schedule.hour"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "schedules[" + index + "][hour]",
+                placeholder: "Hour (ex: 23:50)"
+              },
+              domProps: { value: schedule.hour },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(schedule, "hour", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-1" }, [
             _c(
@@ -37635,7 +37666,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "btn btn-outline-secondary",
+            staticClass: "btn btn-outline-secondary btn-sm",
             attrs: { type: "button" },
             on: { click: _vm.addSchedule }
           },
@@ -37646,23 +37677,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-11" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          name: "schedule[][]",
-          placeholder: "Hour (ex: 23:50)"
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

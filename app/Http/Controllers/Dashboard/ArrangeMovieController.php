@@ -7,6 +7,7 @@ use App\Models\ArrangeMovie;
 use App\Models\Theater;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArrangeMovieController extends Controller
 {
@@ -61,7 +62,19 @@ class ArrangeMovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(),[
+            'studio' => 'required|max:250',
+            'movie_id' => 'required',
+            'price' => 'required',
+            'rows' => 'required',
+            'columns' => 'required',
+            'schedule' => 'required',
+            'status' => 'required'
+        ]);
+
+        if($validate->fails()){
+            return redirect()->route('dashboard.theaters.arrange.movie.create', $request->input('theater_id'))->withErrors($validate)->withInput();
+        }
     }
 
     /**
@@ -83,7 +96,18 @@ class ArrangeMovieController extends Controller
      */
     public function edit(ArrangeMovie $arrangeMovie)
     {
-        //
+        $active = "Theaters";
+
+        $movies = Movie::get();
+
+        return view('dashboard/arrange_movie/form', [
+            'active'    => $active,
+            'theater'   => $theater,
+            'movies'    => $movies,
+            'arrangeMovie' => $arrangeMovie,
+            'button'    => 'Update',
+            'url'       => 'dashboard.theaters.arrange.movie.update'
+        ]);
     }
 
     /**
