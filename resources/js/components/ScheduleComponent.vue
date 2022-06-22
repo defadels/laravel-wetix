@@ -28,7 +28,7 @@
         methods: {
             addSchedule() {
                 this.schedules.push({
-                    hour:''
+                    hour: ''
                 })
             },
             removeSchedule(index){

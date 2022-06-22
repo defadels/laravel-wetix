@@ -8,5 +8,5 @@ class ArrangeMovie extends Model
 {
     protected $table = 'arrange_movie';
 
-    protected $guarded = [];
+    // protected $guarded = [];
 }

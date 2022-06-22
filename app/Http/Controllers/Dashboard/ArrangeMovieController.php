@@ -63,17 +63,43 @@ class ArrangeMovieController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(),[
-            'studio' => 'required|max:250',
-            'movie_id' => 'required',
-            'price' => 'required',
-            'rows' => 'required',
-            'columns' => 'required',
-            'schedule' => 'required',
-            'status' => 'required'
+
+            'studio'        => 'required',
+            'theater_id'    => 'required',
+            'movie_id'      => 'required',
+            'status'        => 'required'
         ]);
 
         if($validate->fails()){
-            return redirect()->route('dashboard.theaters.arrange.movie.create', $request->input('theater_id'))->withErrors($validate)->withInput();
+
+            return redirect()->route('dashboard.theaters.arrange.movie.create', $request->input('theater_id'))
+            ->withErrors($validate)
+            ->withInput();
+
+        } else {
+
+            $seats = [
+                'rows' => $request->input('rows'),
+                'columns' => $request->input('columns')
+            ];
+
+            $arrangemovie = new ArrangeMovie;
+
+            $arrangemovie->movie_id     = $request->input('movie_id');
+            $arrangemovie->theater_id   = $request->input('theater_id');
+            $arrangemovie->studio       = $request->input('studio');
+            $arrangemovie->price        = $request->input('price');
+            $arrangemovie->status       = $request->input('status');
+            $arrangemovie->seats        = json_encode($seats);
+            $arrangemovie->schedules    = json_encode($request->input('schedules'));
+
+            $arrangemovie->save();
+
+            // dd($arrangemovie);
+
+            return redirect()->route('dashboard.theaters.arrange.movie', $request->input('theater_id'))
+            ->with('message', __('pesan.create', ['module' => $request->input('studio')]));
+
         }
     }
 
