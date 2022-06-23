@@ -26,8 +26,7 @@ class ArrangeMovieController extends Controller
         $arranges = $arranges->when($q, function($query) use ($q) {
                 return $query->where('seats','like', '%'.$q.'%')
                              ->orWhere('price','like', '%'.$q.'%');
-                })
-                ->paginate(10);
+                })->paginate(10);
 
 
        

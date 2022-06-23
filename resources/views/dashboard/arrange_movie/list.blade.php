@@ -20,7 +20,7 @@
         <div class="row">
 
             <div class="col-8 align-self-center">
-                <h3>Arrange Movie</h3>
+                <h3>Arrange Movie - {{ $theater->theater }}</h3>
             </div>
             <div class="col-4">
                 <form method="get" action="{{ route('dashboard.theaters') }}">
@@ -40,8 +40,10 @@
         <table class="table table-borderless table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Theater</th>
-                    <th>Address</th>
+                    <th>Movie</th>
+                    <th>Studio</th>
+                    <th>Price</th>
+                    <th>Status</th>
                     <th>&nbsp;</th>
                 </tr> 
             </thead> 
@@ -49,11 +51,10 @@
             @foreach($arranges as $arrange) 
                 <tr>
                     {{-- <th scope="row">{{ ($theaters->currentPage() - 1) * $theaters->perPage() + $loop->iteration }}</th> --}}
-                    <td class="col-thumbnail">
-                        <strong>{{$arrange->price}}</strong>
-                    </td>
-                    <td>
-                       <strong>{{$arrange->seats}}</strong> </td>
+                    <td>{{$arrange->movies->first()->title}}</td>
+                    <td>{{$arrange->studio}}</td>
+                    <td>{{$arrange->price}}</td>
+                    <td>{{ucfirst($arrange->status)}}</td>
                     <td>
                     <a href="{{route('dashboard.theaters.edit',$arrange->id)}}" title="Edit data" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
                     <a href="{{route('dashboard.theaters.arrange.movie',$arrange->id)}}" title="Arrange movie" class="btn btn-primary btn-sm"><i class="fas fa-film"></i></a>
