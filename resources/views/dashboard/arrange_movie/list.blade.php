@@ -23,9 +23,9 @@
                 <h3>Arrange Movie - {{ $theater->theater }}</h3>
             </div>
             <div class="col-4">
-                <form method="get" action="{{ route('dashboard.theaters') }}">
+                <form method="get" action="{{ route('dashboard.theaters.arrange.movie', $theater->id) }}">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control form-control-sm" value="{{ $req['q'] ?? '' }}">
+                        <input type="text" name="q" class="form-control form-control-sm" value="{{ $request['q'] ?? '' }}">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-sm btn-secondary">Search</button>
                         </div>

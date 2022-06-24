@@ -16,17 +16,18 @@ class ArrangeMovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, ArrangeMovie $arranges, Theater $theater)
+    public function index(Request $request, Theater $theater)
     {
         $q = $request->input('q');
 
 
         $active = "Theaters";
 
-        $arranges = $arranges->when($q, function($query) use ($q) {
-                return $query->where('seats','like', '%'.$q.'%')
-                             ->orWhere('price','like', '%'.$q.'%');
-                })->paginate(10);
+        $arranges = ArrangeMovie::where('theater_id', $theater->id)
+                    ->whereHas('movies', function($query) use ($q){
+                        $query->where('title', 'like', "%$q%");
+                    })
+                    ->paginate(10);
 
 
        
