@@ -56,7 +56,7 @@
                     <td>{{$arrange->price}}</td>
                     <td>{{ucfirst($arrange->status)}}</td>
                     <td>
-                    <a href="{{route('dashboard.theaters.arrange.movie.edit',[$arrange->id, $theater->id])}}" title="Edit data" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
+                    <a href="{{route('dashboard.theaters.arrange.movie.edit',[$theater->id, $arrange->id])}}" title="Edit data" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
                 
                         
                 </td> 

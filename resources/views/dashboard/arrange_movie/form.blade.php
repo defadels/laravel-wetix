@@ -76,7 +76,7 @@
             {{-- Decode Seats Rows --}}
 
             @php
-                $seats = json_decode($arrangeMovie->seats) 
+                $seats = isset($arrangeMovie->seats) ? json_decode($arrangeMovie->seats) : '';
             @endphp
 
             <div class="form-group form-row mt-4">
@@ -109,7 +109,7 @@
             </div>
             <div class="card">
                 <div class="card-body"> 
-                    <schedule-component :old-schedules="{{ json_encode(old('schedules') ?? []) }}"></schedule-component>
+                    <schedule-component :old-schedules="{{ $arrangeMovie->schedules ?? json_encode(old('schedules') ?? []) }}"></schedule-component>
                 </div>
                 @error('schedule')
                     <span class="text-danger"> 

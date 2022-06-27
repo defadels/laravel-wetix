@@ -120,7 +120,7 @@ class ArrangeMovieController extends Controller
      * @param  \App\Models\ArrangeMovie  $arrangeMovie
      * @return \Illuminate\Http\Response
      */
-    public function edit( Theater $theater, ArrangeMovie $arrangeMovie)
+    public function edit(Theater $theater, ArrangeMovie $arrangeMovie)
     {
         $active = "Theaters";
 
