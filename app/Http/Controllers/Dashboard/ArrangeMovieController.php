@@ -195,6 +195,11 @@ class ArrangeMovieController extends Controller
      */
     public function destroy(ArrangeMovie $arrangeMovie)
     {
-        //
+        $title = $arrangeMovie->studio;
+
+        $arrangeMovie->delete();
+
+        return redirect()->route('dashboard.theaters.arrange.movie', $arrangeMovie->theater_id)
+        ->with('messages', __('pesan.delete', ['module' => $title]));
     }
 }

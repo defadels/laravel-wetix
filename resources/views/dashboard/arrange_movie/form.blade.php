@@ -165,7 +165,7 @@
                 </p>  
             </div>
             <div class="modal-footer">
-                <form action="{{ route('dashboard.theaters.delete', $theater->id ?? '') }}" method="post">
+                <form action="{{ route('dashboard.theaters.arrange.movie.delete', $arrangeMovie->id ?? '') }}" method="post">
                 @csrf
                 @method('delete')
                 <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
