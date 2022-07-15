@@ -98,7 +98,7 @@ class ArrangeMovieController extends Controller
             // dd($arrangemovie);
 
             return redirect()->route('dashboard.theaters.arrange.movie', $request->input('theater_id'))
-            ->with('message', __('pesan.create', ['module' => $request->input('studio')]));
+            ->with('messages', __('pesan.create', ['module' => $request->input('studio')]));
 
         }
     }
@@ -145,7 +145,46 @@ class ArrangeMovieController extends Controller
      */
     public function update(Request $request, ArrangeMovie $arrangeMovie)
     {
-        //
+        $validate = Validator::make($request->all(),[
+
+            'studio'        => 'required',
+            'theater_id'    => 'required',
+            'movie_id'      => 'required',
+            'status'        => 'required'
+        ]);
+
+        if($validate->fails()){
+
+            return redirect()->route('dashboard.theaters.arrange.movie.edit',
+            ['theater' => $request->input('theater_id'),
+            'arrangeMovie' => $arrangeMovie->id])
+            ->withErrors($validate)
+            ->withInput();
+
+        } else {
+
+            $seats = [
+                'rows' => $request->input('rows'),
+                'columns' => $request->input('columns')
+            ];
+
+
+            $arrangeMovie->movie_id     = $request->input('movie_id');
+            $arrangeMovie->theater_id   = $request->input('theater_id');
+            $arrangeMovie->studio       = $request->input('studio');
+            $arrangeMovie->price        = $request->input('price');
+            $arrangeMovie->status       = $request->input('status');
+            $arrangeMovie->seats        = json_encode($seats);
+            $arrangeMovie->schedules    = json_encode($request->input('schedules'));
+
+            $arrangeMovie->save();
+
+            // dd($arrangemovie);
+
+            return redirect()->route('dashboard.theaters.arrange.movie', $request->input('theater_id'))
+            ->with('messages', __('pesan.update', ['module' => $request->input('studio')]));
+
+        }
     }
 
     /**

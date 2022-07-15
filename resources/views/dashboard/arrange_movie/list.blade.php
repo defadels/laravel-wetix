@@ -6,6 +6,7 @@
     <a href="{{route('dashboard.theaters.arrange.movie.create',$theater->id)}}" class="btn btn-primary btn-sm">+ Arrange Movie</a>
 </div>
 
+
 @if(session()->has('messages'))
 <div class="alert alert-success">
     <strong>{{session()->get('messages')}}</strong>

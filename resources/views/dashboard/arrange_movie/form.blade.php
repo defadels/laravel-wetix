@@ -21,10 +21,10 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-        <form method="post" action="{{ route($url, $theater->id ?? '') }}">
+        <form method="post" action="{{ route($url, $arrangeMovie->id ?? '') }}">
         @csrf
-        @if(isset($theater))
-            {{-- @method('put') --}}
+        @if(isset($arrangeMovie))
+            @method('put')
         @endif
         <input type="hidden" name="theater_id" id="" value="{{ $theater->id }}">
 
@@ -40,9 +40,6 @@
                         <option value="{{$movie->id}}">{{$movie->title}}</option>
                     @endif    
                 @endforeach
-
-                @else
-                <option value="">Movie Empty</option>
                 
               @endif  
             </select>
