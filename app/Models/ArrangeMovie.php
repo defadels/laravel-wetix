@@ -11,6 +11,7 @@ class ArrangeMovie extends Model
     // protected $guarded = [];
 
     public function movies(){
-        return $this->hasMany('App\Models\Movie', 'id', 'movie_id');
+        return $this->belongsTo('App\Models\Movie', 'movie_id' ,'id');
+        // return $this->hasMany('App\Models\Movie', 'id', 'movie_id');
     }
 }

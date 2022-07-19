@@ -52,7 +52,7 @@
             @foreach($arranges as $arrange) 
                 <tr>
                     {{-- <th scope="row">{{ ($theaters->currentPage() - 1) * $theaters->perPage() + $loop->iteration }}</th> --}}
-                    <td>{{$arrange->movies->first()->title}}</td>
+                    <td>{{$arrange->movies->title}}</td>
                     <td>{{$arrange->studio}}</td>
                     <td>{{$arrange->price}}</td>
                     <td>{{ucfirst($arrange->status)}}</td>
